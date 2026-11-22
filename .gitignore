@@ -1,3 +1,9 @@
+node_modules/
+*.zip
+.vscode/
+.env
+.DS_Store
+npm-debug.log
 # Logs
 logs
 *.log
@@ -7,7 +13,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+
 dist
 dist-ssr
 .output
