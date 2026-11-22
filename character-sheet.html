@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ficha de Personagem D&D 3.5 · Monge Épico</title>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f8f6f0;
+  --surface: #ffffff;
+  --raised: #f1ede4;
+  --text: #1a1a1a;
+  --muted: #5e5a52;
+  --line: #ded7c8;
+  --accent: #8b1e1e;
+  --accent-soft: #fbf2f2;
+  --accent-text: #6b1414;
+  --gold: #b38600;
+  --gold-bg: #fffdf5;
+  --gold-line: #e6c866;
+  --green: #2a7a40;
+  --green-bg: #eef7f0;
+  --shadow: 0 4px 12px rgba(0,0,0,0.06);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111418;
+  --surface: #181d24;
+  --raised: #212832;
+  --text: #eaeef4;
+  --muted: #8e9bb0;
+  --line: #2d3748;
+  --accent: #d33c3c;
+  --accent-soft: #2e1717;
+  --accent-text: #ff7575;
+  --gold: #e5b022;
+  --gold-bg: #272111;
+  --gold-line: #6c5415;
+  --green: #48bb78;
+  --green-bg: #142a1d;
+  --shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  padding-bottom: 80px;
+}
+
+/* Top Header Bar */
+.top-bar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+.top-bar-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--accent);
+}
+.brand-badge {
+  font-size: 0.75rem;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.top-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn {
+  background: var(--raised);
+  color: var(--text);
+  border: 1px solid var(--line);
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+.btn:hover {
+  background: var(--line);
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.btn-primary:hover {
+  opacity: 0.9;
+}
+.btn-gold {
+  background: var(--gold);
+  color: #000;
+  border-color: var(--gold);
+}
+.btn-gold:hover {
+  opacity: 0.9;
+}
+
+/* Main Container */
+.container {
+  max-width: 1400px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+/* Character Banner */
+.character-banner {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: var(--shadow);
+}
+.char-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.char-name-input {
+  font-size: 1.8rem;
+  font-weight: 800;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text);
+  outline: none;
+  width: 100%;
+  max-width: 450px;
+}
+.char-name-input:focus {
+  border-bottom-color: var(--accent);
+}
+.char-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.tag {
+  background: var(--raised);
+  border: 1px solid var(--line);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+}
+.tag-gold {
+  background: var(--gold-bg);
+  border-color: var(--gold-line);
+  color: var(--gold);
+}
+.tag-accent {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Navigation Tabs */
+.tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+.tab-btn {
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.tab-btn:hover {
+  color: var(--text);
+}
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Grid Layouts */
+.grid-top {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* Card Component */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 8px;
+}
+.card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Ability Scores Section */
+.ability-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+@media (max-width: 900px) {
+  .ability-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 500px) {
+  .ability-grid { grid-template-columns: repeat(2, 1fr); }
+}
+.ability-card {
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.ability-name {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+.ability-mod {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+.ability-stepper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+}
+.btn-step {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+.btn-step:hover {
+  background: var(--raised);
+}
+.ability-input {
+  width: 36px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+/* AC Matrix */
+.ac-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+.ac-subbox {
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+}
+.ac-main {
+  background: var(--gold-bg);
+  border-color: var(--gold-line);
+}
+.ac-value {
+  font-size: 1.7rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.ac-main .ac-value {
+  color: var(--gold);
+}
+.ac-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.ac-breakdown {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 6px;
+  text-align: center;
+  font-size: 0.75rem;
+}
+.ac-item {
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 4px;
+}
+.ac-item-val {
+  font-weight: 700;
+}
+
+/* Saving Throws */
+.saves-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  text-align: center;
+}
+.save-card {
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+}
+.save-total {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+.save-sub {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* HP & Combat History */
+.hp-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.hp-gauge {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+.hp-bar-bg {
+  background: var(--raised);
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  border: 1px solid var(--line);
+}
+.hp-bar-fill {
+  background: var(--green);
+  height: 100%;
+  width: 98%;
+  transition: width 0.3s ease;
+}
+.hp-controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.hp-input {
+  flex: 1;
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 700;
+  outline: none;
+}
+.hp-log-collapsible {
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+.hp-log-summary {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+}
+.hp-log-list {
+  max-height: 140px;
+  overflow-y: auto;
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.75rem;
+}
+.hp-log-entry {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 6px;
+  background: var(--raised);
+  border-radius: 4px;
+}
+.log-dmg { color: var(--accent); }
+.log-heal { color: var(--green); }
+
+/* Combat & Attack Routine */
+.attack-card {
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.attack-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.attack-title {
+  font-weight: 700;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.attack-dmg-tag {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+.attack-note {
+  font-size: 0.75rem;
+  color: var(--muted);
+  max-width: 550px;
+}
+.buff-pill-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.buff-chip {
+  background: var(--raised);
+  border: 1px solid var(--line);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.buff-chip.active {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Skills Table */
+.skills-filter {
+  margin-bottom: 12px;
+  width: 100%;
+  max-width: 320px;
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  color: var(--text);
+  font-size: 0.85rem;
+  outline: none;
+}
+.skills-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.skills-table th {
+  background: var(--raised);
+  padding: 8px 10px;
+  text-align: left;
+  border-bottom: 2px solid var(--line);
+  color: var(--muted);
+}
+.skills-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+}
+.skills-table tr:hover td {
+  background: var(--raised);
+}
+.skill-total {
+  font-weight: 800;
+  font-size: 0.95rem;
+  color: var(--accent);
+}
+.skill-ranks-cell {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.skill-ranks-input {
+  width: 36px;
+  text-align: center;
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--text);
+  font-weight: 600;
+}
+
+/* Feats & Accordions */
+.accordion-group {
+  margin-bottom: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--surface);
+}
+.accordion-header {
+  background: var(--raised);
+  padding: 12px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+.accordion-content {
+  padding: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px;
+}
+.feat-card {
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.feat-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.feat-name {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.feat-sub {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* Dice Roller Drawer / Floating Widget */
+.dice-tray {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  padding: 14px;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+}
+.dice-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.btn-die {
+  background: var(--raised);
+  border: 1px solid var(--line);
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--text);
+}
+.btn-die:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.dice-result-box {
+  font-size: 1.1rem;
+  font-weight: 800;
+  padding: 6px 14px;
+  background: var(--gold-bg);
+  border: 1px solid var(--gold-line);
+  border-radius: var(--radius-sm);
+  color: var(--gold);
+}
+
+/* Modal Detail Dialog */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+.modal-overlay.active {
+  display: flex;
+}
+.modal-box {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  max-width: 550px;
+  width: 100%;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  position: relative;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--muted);
+}
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+.modal-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--raised);
+  border: 1px solid var(--line);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 14px;
+  color: var(--muted);
+}
+.modal-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--line);
+  padding: 10px 18px;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: none;
+  z-index: 2000;
+}
+</style>
+</head>
+<body>
+
+<!-- Top Navigation Bar -->
+<header class="top-bar">
+  <div class="top-bar-inner">
+    <div class="brand">
+      <span>D&D 3.5</span>
+      <span class="brand-badge">Épico</span>
+      <span style="font-size: 0.85rem; font-weight: 600; color: var(--muted);">Ficha Interativa</span>
+    </div>
+    <div class="top-actions">
+      <button class="btn" onclick="exportJSON()">📥 Salvar (.json)</button>
+      <label class="btn">
+        📤 Carregar (.json)
+        <input type="file" id="import-file" style="display:none" onchange="importJSON(event)">
+      </label>
+      <button class="btn" onclick="toggleTheme()" id="theme-btn">☀️ / 🌙</button>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Character Banner -->
+  <section class="character-banner">
+    <div class="char-identity">
+      <input type="text" class="char-name-input" id="char-name" value="O Santo" onchange="updateIdentity('name', this.value)" placeholder="Nome do Personagem">
+      <div class="char-meta">
+        <span class="tag tag-gold" id="char-level-badge">Nível 32 (ND 34)</span>
+        <span class="tag tag-accent">Monge 9 / Tatuado 11 / Shintao 4 / Shaolin 8</span>
+        <span class="tag">Modelo: Santo [ND +2]</span>
+        <span class="tag">Humano · Leal e Bom</span>
+      </div>
+    </div>
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <div style="text-align: right;">
+        <div style="font-size: 0.75rem; color: var(--muted); font-weight: 700;">INICIATIVA</div>
+        <div style="font-size: 1.5rem; font-weight: 800; color: var(--accent);">+8</div>
+      </div>
+      <div style="text-align: right; border-left: 1px solid var(--line); padding-left: 12px;">
+        <div style="font-size: 0.75rem; color: var(--muted); font-weight: 700;">DESLOCAMENTO</div>
+        <div style="font-size: 1.2rem; font-weight: 800;">27m <span style="font-size: 0.8rem; color: var(--muted);">(18q)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Navigation Tabs -->
+  <nav class="tabs">
+    <button class="tab-btn active" onclick="switchTab('overview')">⚔️ Combate & Atributos</button>
+    <button class="tab-btn" onclick="switchTab('skills')">📜 Perícias (36)</button>
+    <button class="tab-btn" onclick="switchTab('feats')">★ Talentos & Habilidades</button>
+  </nav>
+
+  <!-- TAB 1: OVERVIEW & COMBAT -->
+  <main id="tab-overview">
+    
+    <!-- Ability Scores Grid -->
+    <div class="card" style="margin-bottom: 20px;">
+      <div class="card-header">
+        <span class="card-title">Atributos & Modificadores</span>
+        <span style="font-size: 0.75rem; color: var(--muted);">Cálculo automático de bônus</span>
+      </div>
+      <div class="ability-grid" id="ability-scores-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+
+    <!-- Defense & Health Section -->
+    <div class="grid-top">
+      
+      <!-- AC Card -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Classe de Armadura (CA)</span>
+          <span class="tag tag-gold">Intocável</span>
+        </div>
+        <div class="ac-box">
+          <div class="ac-subbox ac-main">
+            <div class="ac-value" id="ac-total">110</div>
+            <div class="ac-label">CA TOTAL</div>
+          </div>
+          <div class="ac-subbox">
+            <div class="ac-value" id="ac-touch">86</div>
+            <div class="ac-label">TOQUE</div>
+          </div>
+          <div class="ac-subbox">
+            <div class="ac-value" id="ac-flat">102</div>
+            <div class="ac-label">SURPRESA</div>
+          </div>
+        </div>
+        <div class="ac-breakdown">
+          <div class="ac-item"><div>Base</div><div class="ac-item-val">10</div></div>
+          <div class="ac-item"><div>Armadura</div><div class="ac-item-val" id="ac-arm">19</div></div>
+          <div class="ac-item"><div>Escudo</div><div class="ac-item-val">14</div></div>
+          <div class="ac-item"><div>Des</div><div class="ac-item-val" id="ac-dex">8</div></div>
+          <div class="ac-item"><div>Sab/Tam</div><div class="ac-item-val" id="ac-wis">19</div></div>
+          <div class="ac-item"><div>Natural</div><div class="ac-item-val">5</div></div>
+          <div class="ac-item"><div>Deflexão</div><div class="ac-item-val">3</div></div>
+          <div class="ac-item"><div>Outros</div><div class="ac-item-val">32</div></div>
+        </div>
+      </div>
+
+      <!-- Hit Points Card -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Pontos de Vida (PV)</span>
+          <span class="tag tag-accent" id="hp-status">Excelente</span>
+        </div>
+        <div class="hp-display">
+          <div class="hp-gauge"><span id="hp-current">408</span> <span style="font-size: 1.1rem; color: var(--muted); font-weight: 600;">/ 416</span></div>
+          <div style="font-size: 0.8rem; color: var(--muted);">Cura Acelerada ativa</div>
+        </div>
+        <div class="hp-bar-bg">
+          <div class="hp-bar-fill" id="hp-bar" style="width: 98%;"></div>
+        </div>
+        <div class="hp-controls">
+          <input type="number" class="hp-input" id="hp-change-val" placeholder="Qtd de PV" min="1">
+          <button class="btn btn-primary" onclick="alterHP('damage')">- Dano</button>
+          <button class="btn btn-gold" onclick="alterHP('heal')">+ Cura</button>
+        </div>
+        <details class="hp-log-collapsible">
+          <summary class="hp-log-summary">Consultar Histórico de Dano / Cura (<span id="hp-log-count">0</span>)</summary>
+          <div class="hp-log-list" id="hp-log-list">
+            <!-- Log entries -->
+          </div>
+        </details>
+      </div>
+
+      <!-- Saving Throws Card -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Testes de Resistência</span>
+          <span style="font-size: 0.75rem; color: var(--muted);">Base 16 + Outros 3</span>
+        </div>
+        <div class="saves-grid">
+          <div class="save-card">
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--muted);">FORTITUDE</div>
+            <div class="save-total" id="save-fort">+24</div>
+            <div class="save-sub">CON (<span id="save-con-mod">+5</span>)</div>
+          </div>
+          <div class="save-card">
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--muted);">REFLEXOS</div>
+            <div class="save-total" id="save-ref">+27</div>
+            <div class="save-sub">DES (<span id="save-dex-mod">+8</span>)</div>
+          </div>
+          <div class="save-card">
+            <div style="font-size: 0.75rem; font-weight: 700; color: var(--muted);">VONTADE</div>
+            <div class="save-total" id="save-will">+38</div>
+            <div class="save-sub">SAB (<span id="save-wis-mod">+19</span>)</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Attack Routine & Damage Card -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Sequência de Ataque Desarmado & Combate</span>
+        <span class="tag tag-gold">Estilo Zen / Punhos Sagrados</span>
+      </div>
+
+      <!-- Situational Buff Chips -->
+      <div style="font-size: 0.8rem; font-weight: 700; color: var(--muted); margin-bottom: 6px;">BUFFS ATIVOS NO DANO:</div>
+      <div class="buff-pill-container">
+        <div class="buff-chip active" id="buff-leao" onclick="toggleBuff('leao')">🦁 Tatuagem Leão (+32 dano)</div>
+        <div class="buff-chip active" id="buff-mantis" onclick="toggleBuff('mantis')">🦗 Salto do Louva-a-Deus (Dano Dobrado!)</div>
+        <div class="buff-chip active" id="buff-shaolin" onclick="toggleBuff('shaolin')">🥋 Ataque Acrobático (+8 atq)</div>
+        <div class="buff-chip active" id="buff-exaltado" onclick="toggleBuff('exaltado')">✨ Golpe Exaltado (+5 atq/dano)</div>
+        <div class="buff-chip" id="buff-ferro" onclick="toggleBuff('ferro')">👊 Punho de Ferro (+1d6)</div>
+        <div class="buff-chip" id="buff-chisagrado" onclick="toggleBuff('chisagrado')">☯ Chi Sagrado (+2d6 Mal)</div>
+        <div class="buff-chip" id="buff-toquesagrado" onclick="toggleBuff('toquesagrado')">👼 Toque Sagrado (+1d6/+1d8)</div>
+      </div>
+
+      <!-- Attack Routine 1 -->
+      <div class="attack-card">
+        <div class="attack-info">
+          <div class="attack-title">
+            <span>1º Ataque Desarmado (1x)</span>
+            <span class="tag tag-accent">+62 para acertar</span>
+          </div>
+          <div class="attack-dmg-tag" id="dmg-display-1">4d8 + 45 <span style="font-size: 0.75rem; color: var(--muted);">(Dano Contundente / Sagrado / Mágico)</span></div>
+          <div class="attack-note">BBA 21 + Sab 19 + Tatuagens (Leão+4, Vespa+1) + Mácula +4 + Shaolin +8 + Golpe Exaltado +5. Se saltar (Mantis Leap), o dano dobra!</div>
+        </div>
+        <button class="btn btn-gold" onclick="rollAttack('1º Ataque', 62, 4, 8, 45)">🎲 Rolar Ataque & Dano</button>
+      </div>
+
+      <!-- Attack Routine 2 (Flurry x5) -->
+      <div class="attack-card">
+        <div class="attack-info">
+          <div class="attack-title">
+            <span>2º Ataque: Rajada de Golpes Épica (5x)</span>
+            <span class="tag tag-gold">+57 para acertar</span>
+          </div>
+          <div class="attack-dmg-tag" id="dmg-display-2">4d8 + 41 <span style="font-size: 0.75rem; color: var(--muted);">(5 ataques sucessivos com o mesmo bônus)</span></div>
+          <div class="attack-note">Rajada completa de Monge Épico. Desfere 5 socos no mesmo turno mantendo o acerto de +57.</div>
+        </div>
+        <button class="btn btn-gold" onclick="rollAttack('2º Ataque (Rajada)', 57, 4, 8, 41)">🎲 Rolar Ataque & Dano</button>
+      </div>
+
+      <!-- Attack Routine 3 -->
+      <div class="attack-card">
+        <div class="attack-info">
+          <div class="attack-title">
+            <span>3º Ataque Adicional</span>
+            <span class="tag tag-accent">+54 para acertar</span>
+          </div>
+          <div class="attack-dmg-tag" id="dmg-display-3">4d8 + 9 <span style="font-size: 0.75rem; color: var(--muted);">(Dano básico de Força + Exaltado)</span></div>
+          <div class="attack-note">Último ataque da sequência base sem o bônus místico da Tatuagem do Leão.</div>
+        </div>
+        <button class="btn btn-gold" onclick="rollAttack('3º Ataque', 54, 4, 8, 9)">🎲 Rolar Ataque & Dano</button>
+      </div>
+
+      <!-- Dice Tray -->
+      <div class="dice-tray">
+        <div style="font-weight: 700; font-size: 0.9rem;">Bandeja Rápida de Dados:</div>
+        <div class="dice-buttons">
+          <button class="btn-die" onclick="quickRoll(4)">d4</button>
+          <button class="btn-die" onclick="quickRoll(6)">d6</button>
+          <button class="btn-die" onclick="quickRoll(8)">d8</button>
+          <button class="btn-die" onclick="quickRoll(10)">d10</button>
+          <button class="btn-die" onclick="quickRoll(12)">d12</button>
+          <button class="btn-die" onclick="quickRoll(20)" style="border-color: var(--accent); color: var(--accent); font-weight: 800;">d20</button>
+          <button class="btn-die" onclick="quickRoll(100)">d100</button>
+        </div>
+        <div class="dice-result-box" id="quick-dice-result">Resultado: —</div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- TAB 2: SKILLS TABLE -->
+  <main id="tab-skills" style="display: none;">
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Perícias de Personagem (36 Perícias D&D 3.5)</span>
+        <input type="text" class="skills-filter" id="skills-search" placeholder="🔍 Filtrar perícia..." oninput="filterSkills(this.value)">
+      </div>
+      <div style="overflow-x: auto;">
+        <table class="skills-table">
+          <thead>
+            <tr>
+              <th>Perícia</th>
+              <th>Hab. Chave</th>
+              <th>Total Mod</th>
+              <th>Mod Hab</th>
+              <th>Graduação (Ranks)</th>
+              <th>Outros</th>
+            </tr>
+          </thead>
+          <tbody id="skills-table-body">
+            <!-- 36 Skills dynamically rendered -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- TAB 3: FEATS & ACCORDIONS -->
+  <main id="tab-feats" style="display: none;">
+    <div id="accordions-container">
+      <!-- Accordions rendered dynamically -->
+    </div>
+  </main>
+
+</div>
+
+<!-- Modal Detail Dialog -->
+<div class="modal-overlay" id="detail-modal" onclick="closeModalOnBackdrop(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-title" id="modal-title">Título do Talento</div>
+    <div class="modal-tag" id="modal-tag">Categoria • Livro</div>
+    <div class="modal-desc" id="modal-desc">Descrição detalhada...</div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast-msg">Mensagem salva com sucesso!</div>
+
+<script>
+'use strict';
+
+// 1. Initial State Data
+const defaultState = {
+  name: "O Santo",
+  abilities: { str: 18, dex: 26, con: 20, int: 18, wis: 48, cha: 28 },
+  hp: { current: 408, max: 416, log: [] },
+  skills: [{"name": "Abrir Fechaduras", "ability": "dex", "ranks": 0, "misc": 0}, {"name": "Acrobacia", "ability": "dex", "ranks": 35, "misc": 4}, {"name": "Adestrar Animais", "ability": "cha", "ranks": 0, "misc": 2}, {"name": "Arte da Fuga", "ability": "dex", "ranks": 5, "misc": 0}, {"name": "Atuação", "ability": "cha", "ranks": 0, "misc": 2}, {"name": "Avaliação", "ability": "int", "ranks": 0, "misc": 0}, {"name": "Blefar", "ability": "cha", "ranks": 4, "misc": 2}, {"name": "Cavalgar", "ability": "dex", "ranks": 0, "misc": 0}, {"name": "Concentração", "ability": "con", "ranks": 35, "misc": 0}, {"name": "Conhecimento (Arcano)", "ability": "int", "ranks": 35, "misc": 0}, {"name": "Conhecimento (Religião)", "ability": "int", "ranks": 35, "misc": 0}, {"name": "Cura", "ability": "wis", "ranks": 0, "misc": 0}, {"name": "Decifrar Escrita", "ability": "int", "ranks": 0, "misc": 0}, {"name": "Diplomacia", "ability": "cha", "ranks": 35, "misc": 12}, {"name": "Disfarce", "ability": "cha", "ranks": 0, "misc": 0}, {"name": "Equilíbrio", "ability": "dex", "ranks": 0, "misc": 4}, {"name": "Escalar", "ability": "str", "ranks": 0, "misc": 0}, {"name": "Esconder-se", "ability": "dex", "ranks": 8, "misc": 0}, {"name": "Falsificação", "ability": "int", "ranks": 0, "misc": 0}, {"name": "Furtividade", "ability": "dex", "ranks": 7, "misc": 0}, {"name": "Identificar Magia", "ability": "int", "ranks": 3, "misc": 4}, {"name": "Intimidação", "ability": "cha", "ranks": 0, "misc": 2}, {"name": "Natação", "ability": "str", "ranks": 0, "misc": 0}, {"name": "Observar", "ability": "wis", "ranks": 13, "misc": 0}, {"name": "Obter Informação", "ability": "cha", "ranks": 0, "misc": 2}, {"name": "Ofícios", "ability": "int", "ranks": 0, "misc": 0}, {"name": "Operar Mecanismo", "ability": "int", "ranks": 0, "misc": 0}, {"name": "Ouvir", "ability": "wis", "ranks": 13, "misc": 0}, {"name": "Prestidigitação", "ability": "dex", "ranks": 0, "misc": 0}, {"name": "Procurar", "ability": "int", "ranks": 0, "misc": 0}, {"name": "Profissão", "ability": "wis", "ranks": 0, "misc": 0}, {"name": "Saltar", "ability": "str", "ranks": 33, "misc": 70}, {"name": "Sentir Motivação", "ability": "wis", "ranks": 0, "misc": 0}, {"name": "Sobrevivência", "ability": "wis", "ranks": 3, "misc": 0}, {"name": "Usar Cordas", "ability": "dex", "ranks": 0, "misc": 0}, {"name": "Usar Instrumento Mágico", "ability": "cha", "ranks": 0, "misc": 0}],
+  buffs: {
+    leao: true,
+    mantis: true,
+    shaolin: true,
+    exaltado: true,
+    ferro: false,
+    chisagrado: false,
+    toquesagrado: false
+  }
+};
+
+const featsDatabase = [{"category": "Talentos Épicos", "icon": "★", "items": [{"name": "Reflexos de Combate Aprimorado [Épico]", "tag": "Épico / Reação", "source": "Livro dos Níveis Épicos", "desc": "Remove completamente o limite de ataques de oportunidade por rodada! Qualquer ação que provoque AoO ou qualquer golpe desferido contra você (via Golpe Cármico) permite um contra-ataque imediato sem limite de vezes."}, {"name": "Bloquear Conjuração [Épico]", "tag": "Épico / Anti-Magia", "source": "Livro dos Níveis Épicos", "desc": "Conjuradores na sua área ameaçada não podem conjurar defensivamente. Qualquer tentativa de lançar magia provoca ataque de oportunidade seu; se atingido, a magia do adversário é perdida e cancelada na hora."}, {"name": "Deflexão Infinita [Épico]", "tag": "Épico / Defesa", "source": "Livro dos Níveis Épicos", "desc": "Permite defletir e anular qualquer número de ataques e projéteis à distância por rodada (flechas, lanças, pedras de gigantes, disparos mágicos). Não consome ação."}, {"name": "Refletir Objetos [Épico]", "tag": "Épico / Contra-Ataque", "source": "Livro dos Níveis Épicos", "desc": "Qualquer projétil defletido com sucesso é automaticamente devolvido em rota contrária contra o atacante imediato, usando o seu bônus de acerto e causando o dano da própria arma."}]}, {"category": "Talentos Marciais e de Monge", "icon": "⚔️", "items": [{"name": "Salto do Louva-a-Deus (Mantis Leap)", "tag": "Marcial / Especial", "source": "Sword and Fist (pág. 7)", "desc": "Se você saltar em direção a um oponente, o salto conta como uma investida e você dobra seu modificador de Força e todo o dano dos seus ataques desarmados naquele turno! Sinergia lendária com seu modificador de Saltar +107."}, {"name": "Agarrar Aprimorado", "tag": "Combate", "source": "Livro do Jogador", "desc": "Não provoca ataque de oportunidade ao iniciar manobra de agarrar. Concede +4 de bônus em todos os testes de agarrar."}, {"name": "Aprimorar Tatuagem", "tag": "Monge Tatuado", "source": "Livro de Regras", "desc": "Aprimora o poder místico, duração e impacto das tatuagens sagradas inscritas no corpo do monge."}, {"name": "Ataque Atordoante", "tag": "Monge / CD 51", "source": "Livro do Jogador", "desc": "Tentativas diárias iguais ao nível (32 usos). Alvo atingido deve passar em teste de Fortitude (CD 51) ou fica completamente atordoado por 1 rodada."}, {"name": "Congelar Corrente Sanguínea", "tag": "Marcial / CD 51", "source": "Livro de Regras", "desc": "Golpe desarmado especial que atinge pontos vitais. O alvo deve passar em teste de Fortitude (CD 51) ou fica completamente paralisado por 1d4+1 rodadas."}, {"name": "Golpe Cármico", "tag": "Combate", "source": "Guerreiro Completo", "desc": "Ao sofrer um ataque corpo a corpo, você pode realizar imediatamente um ataque de oportunidade contra o atacante (com ataques infinitos via Reflexos Épicos)."}, {"name": "Grito do Chi", "tag": "Sobrenatural / CD 41", "source": "Livro de Regras", "desc": "Emite um grito com energia interior. Todos os inimigos em cone de 9m devem passar em Fortitude (CD 41) ou ficam atordoados por 1 rodada."}, {"name": "Chute Circular", "tag": "Combate", "source": "Livro de Regras", "desc": "Ao desferir um sucesso decisivo desarmado, concede imediatamente um ataque desarmado extra com o mesmo bônus."}, {"name": "Chute Voador (Vôo do Dragão)", "tag": "Combate", "source": "Livro de Regras", "desc": "Ao realizar uma investida desarmado, adiciona +1d12 de dano no impacto."}, {"name": "Punho de Ferro", "tag": "Combate", "source": "Livro de Regras", "desc": "Gasta uma tentativa de ataque atordoante para somar +1d6 de dano contundente no ataque desarmado."}, {"name": "Ataque Poderoso", "tag": "Combate", "source": "Livro do Jogador", "desc": "Permite subtrair um valor do bônus de ataque e somar o dobro desse valor no dano desarmado."}, {"name": "Ataque da Garra da Águia", "tag": "Combate", "source": "Livro de Regras", "desc": "Permite aplicar o dano desarmado para quebrar armas ou objetos do oponente com facilidade."}, {"name": "Separar Aprimorado", "tag": "Combate", "source": "Livro do Jogador", "desc": "Permite quebrar armas ou escudos do oponente sem provocar ataque de oportunidade, com +4 no teste."}, {"name": "Combater Engajado", "tag": "Combate", "source": "Livro de Regras", "desc": "Bônus e mobilidade tática ao lutar contra múltiplos oponentes simultâneos corpo a corpo."}, {"name": "Linha de Frente", "tag": "Combate", "source": "Livro de Regras", "desc": "Bônus defensivos e estabilidade ao lutar na vanguarda do combate."}, {"name": "Esquiva & Mobilidade", "tag": "Combate", "source": "Livro do Jogador", "desc": "+1 na CA contra oponente designado e +4 de esquiva na CA contra ataques de oportunidade causados por movimento. Pré-requisitos para a classe Shaolin."}, {"name": "O Mestre das Mãos Vazias", "tag": "Monge", "source": "Livro de Regras", "desc": "Especialização suprema em manobras de combate desarmado tradicional e armas improvisadas."}, {"name": "Reflexos de Combate", "tag": "Combate", "source": "Livro do Jogador", "desc": "Permite ataques de oportunidade adicionais por rodada. Base para a versão épica ilimitada."}]}, {"category": "Votos Sagrados (Talentos Exaltados)", "icon": "🕊️", "items": [{"name": "Voto de Pobreza", "tag": "Exaltado / Supremo", "source": "Livro dos Feitos Exaltados", "desc": "Renúncia a todos os bens materiais e itens mágicos em troca de transcendência divina: +16 em atributos divididos, CA Natural +5, Deflexão +3, Resistência +3, Armadura Espiritual +10, sustento místico e imunidades."}, {"name": "Voto de Paz", "tag": "Exaltado / Aura", "source": "Livro dos Feitos Exaltados", "desc": "Aura permanente de calma (CD 41). Concede +6 de bônus de perfeição na CA. Qualquer arma manufaturada que atingir o monge deve passar em teste de resistência ou quebra-se instantaneamente."}, {"name": "Voto da Não Violência", "tag": "Exaltado", "source": "Livro dos Feitos Exaltados", "desc": "+4 de bônus na CD de todas as habilidades e ataques não-letais de submissão. Inimigos que se renderem não podem ser executados."}, {"name": "Voto Sagrado", "tag": "Exaltado", "source": "Livro dos Feitos Exaltados", "desc": "+2 de bônus de perfeição em testes de Diplomacia. Altar e alicerce espiritual de todos os votos."}, {"name": "Voto de Castidade", "tag": "Exaltado", "source": "Livro dos Feitos Exaltados", "desc": "+2 de bônus de perfeição em testes de resistência contra efeitos de sedução, compulsão mental e fadas."}, {"name": "Voto de Obediência", "tag": "Exaltado", "source": "Livro dos Feitos Exaltados", "desc": "+2 de bônus de perfeição em testes de Vontade contra efeitos de dominação, encanto e controle de mente."}, {"name": "Beijo de Ninfa", "tag": "Exaltado", "source": "Livro dos Feitos Exaltados", "desc": "+2 em todos os testes de perícia baseados em Carisma e +1 ponto de perícia adicional concedido a cada nível de personagem."}, {"name": "Golpe Chi Sagrado", "tag": "Exaltado / Dano", "source": "Livro dos Feitos Exaltados", "desc": "Seus ataques desarmados causam +2d6 de dano sagrado divino adicional contra qualquer criatura de tendência Maligna."}, {"name": "Golpe Chi Santificado", "tag": "Exaltado / Dano", "source": "Livro dos Feitos Exaltados", "desc": "Seus ataques contam como de tendência Boa e causam +1d4 de dano santificado contra extraplanares malignos ou mortos-vivos."}, {"name": "Brilho Sagrado", "tag": "Exaltado / Radiação", "source": "Livro dos Feitos Exaltados", "desc": "Emite luz sagrada celestial que causa 1d4 de dano automático por rodada a todos os mortos-vivos num raio de até 3 metros."}, {"name": "Luz de Nimbo", "tag": "Exaltado", "source": "Livro dos Feitos Exaltados", "desc": "Uma auréola brilhante circunda o personagem, iluminando as sombras e concedendo +2 em Diplomacia e Sentir Motivação."}, {"name": "Suprimir o Profano", "tag": "Exaltado / CD 37", "source": "Livro dos Feitos Exaltados", "desc": "Ao atingir uma criatura maligna/profana, ela deve passar em teste de Vontade (CD 37) ou tem suas habilidades sobrenaturais suprimidas temporariamente."}]}, {"category": "Tatuagens Místicas (Monge Tatuado - 11 Níveis)", "icon": "🐉", "items": [{"name": "Tatuagem: Leão", "tag": "Ataque & Dano (+32)", "source": "Monge Tatuado", "desc": "Concede um rugido místico que adiciona +4 no bônus de ataque e dano contundente igual ao nível total do personagem (+32 de dano fixo em cada golpe desarmado!)."}, {"name": "Tatuagem: Vespa", "tag": "Ataque & Velocidade", "source": "Monge Tatuado", "desc": "Garante velocidade de ferrão e precisão extrema, concedendo +1 de bônus contínuo em todas as jogadas de ataque e reflexos superiores."}, {"name": "Tatuagem: Tartaruga", "tag": "Defesa & Carapaça", "source": "Monge Tatuado", "desc": "Concede postura defensiva inabalável, bônus massivos de armadura natural e resistência à transmutação corporal."}, {"name": "Tatuagem: Fênix", "tag": "Imortalidade & Fogo", "source": "Monge Tatuado", "desc": "Concede resistência à morte, imunidade a fogo e a capacidade sobrenatural de ressurgir e se regenerar de ferimentos letais."}, {"name": "Tatuagem: Escorpião", "tag": "Veneno Espiritual", "source": "Monge Tatuado", "desc": "Golpes desarmados transmitem um veneno espiritual místico que debilita atributos físicos e vigor dos inimigos atingidos."}, {"name": "Tatuagem: Flor", "tag": "Regeneração Vital", "source": "Monge Tatuado", "desc": "Concede capacidades restaurativas continuadas, cura contínua de dano e sustento místico que dispensa sono normal."}]}, {"category": "Habilidades de Shintao, Shaolin e Modelo Santo", "icon": "☯", "items": [{"name": "Ataque Acrobático (Shaolin)", "tag": "Shaolin 4º Nível", "source": "ShaoLin.pdf", "desc": "Concede bônus de acerto no ataque baseado na sua acrobacia: Graduação 35 / 4 = +8 de bônus contínuo em todas as jogadas de ataque!"}, {"name": "Golpe Mortal Aprimorado (Shaolin)", "tag": "Shaolin 8º Nível", "source": "ShaoLin.pdf", "desc": "Permite canalizar foco mortal nos punhos, somando +4d8 de dano adicional nos ataques desarmados de precisão."}, {"name": "Destruir a Mácula (Shintao)", "tag": "Shintao 2º Nível", "source": "Monge Shintao", "desc": "Adiciona +4 no bônus de ataque e +4 no dano contra criaturas que possuam mácula ou tendência maligna."}, {"name": "Pureza de Shinsei & Tocar o Dragão do Vácuo", "tag": "Shintao", "source": "Monge Shintao", "desc": "Imunidades a feitiços de compulsão mental e capacidade de sintonizar a energia do Vácuo para elevar atributos temporários."}, {"name": "Modelo Santo: Toque Sagrado & Imunidades", "tag": "Modelo Santo (ND +2)", "source": "Livro dos Feitos Exaltados", "desc": "Seus golpes desarmados causam +1d6 de dano sagrado contra seres malignos (+1d8 contra mortos-vivos/extraplanares malignos). Concede visão no escuro, resistência à eletricidade/fogo/frio, e cura acelerada."}, {"name": "Habilidades Similares a Magia (SLA)", "tag": "Magias Divinas", "source": "Modelo Santo", "desc": "Uso diário de: Acalmar Emoções (CD 41), Círculo Mágico Contra o Mal, Globo de Invulnerabilidade Menor, Visão da Verdade, Bênção, Orientação, Resistência e Virtude."}]}];
+
+let state = loadState();
+
+// 2. Storage & State Management
+function loadState() {
+  try {
+    const saved = localStorage.getItem('DND35_EPIC_MONK_STATE');
+    if (saved) return JSON.parse(saved);
+  } catch(e) {
+    console.error('Failed to load state', e);
+  }
+  return JSON.parse(JSON.stringify(defaultState));
+}
+
+function saveState() {
+  try {
+    localStorage.setItem('DND35_EPIC_MONK_STATE', JSON.stringify(state));
+    showToast('Ficha salva no navegador!');
+  } catch(e) {
+    console.error('Save failed', e);
+  }
+}
+
+function exportJSON() {
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = (state.name.replace(/\s+/g, '_') || 'Personagem') + '_DND35.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importJSON(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      state = JSON.parse(e.target.result);
+      saveState();
+      renderAll();
+      showToast('Ficha importada com sucesso!');
+    } catch(err) {
+      alert('Arquivo JSON inválido!');
+    }
+  };
+  reader.readAsText(file);
+}
+
+// 3. Mathematical Helpers
+function calcMod(score) {
+  const s = parseInt(score, 10) || 10;
+  return Math.floor((s - 10) / 2);
+}
+
+function formatSigned(num) {
+  return num >= 0 ? '+' + num : '' + num;
+}
+
+// 4. Ability Scores Logic
+const abilityLabels = {
+  str: 'FORÇA',
+  dex: 'DESTREZA',
+  con: 'CONSTITUIÇÃO',
+  int: 'INTELIGÊNCIA',
+  wis: 'SABEDORIA',
+  cha: 'CARISMA'
+};
+
+function renderAbilities() {
+  const container = document.getElementById('ability-scores-container');
+  container.innerHTML = '';
+  
+  for (const [key, label] of Object.entries(abilityLabels)) {
+    const score = state.abilities[key];
+    const mod = calcMod(score);
+
+    const card = document.createElement('div');
+    card.className = 'ability-card';
+    card.innerHTML = `
+      <div class="ability-name">${label}</div>
+      <div class="ability-mod">${formatSigned(mod)}</div>
+      <div class="ability-stepper">
+        <button class="btn-step" onclick="adjustAbility('${key}', -1)">-</button>
+        <input type="number" class="ability-input" value="${score}" onchange="setAbility('${key}', this.value)">
+        <button class="btn-step" onclick="adjustAbility('${key}', 1)">+</button>
+      </div>
+    `;
+    container.appendChild(card);
+  }
+}
+
+function adjustAbility(key, delta) {
+  state.abilities[key] = Math.max(1, (parseInt(state.abilities[key], 10) || 10) + delta);
+  saveState();
+  renderAll();
+}
+
+function setAbility(key, val) {
+  state.abilities[key] = Math.max(1, parseInt(val, 10) || 10);
+  saveState();
+  renderAll();
+}
+
+// 5. AC & Saves Calculation
+function renderDefenses() {
+  const wisMod = calcMod(state.abilities.wis);
+  const dexMod = calcMod(state.abilities.dex);
+  const conMod = calcMod(state.abilities.con);
+
+  // AC Breakdown
+  document.getElementById('ac-arm').textContent = wisMod;
+  document.getElementById('ac-dex').textContent = dexMod;
+  document.getElementById('ac-wis').textContent = wisMod;
+  
+  // Total AC = 10 + 19(Arm) + 14(Escudo) + dexMod + wisMod(Tam) + 5(Nat) + 3(Deflex) + 32(Outros)
+  const totalAC = 10 + wisMod + 14 + dexMod + wisMod + 5 + 3 + 32;
+  document.getElementById('ac-total').textContent = totalAC;
+  document.getElementById('ac-touch').textContent = 10 + dexMod + wisMod + 3 + 32;
+  document.getElementById('ac-flat').textContent = totalAC - dexMod;
+
+  // Saves
+  document.getElementById('save-con-mod').textContent = formatSigned(conMod);
+  document.getElementById('save-dex-mod').textContent = formatSigned(dexMod);
+  document.getElementById('save-wis-mod').textContent = formatSigned(wisMod);
+
+  document.getElementById('save-fort').textContent = formatSigned(16 + conMod + 3);
+  document.getElementById('save-ref').textContent = formatSigned(16 + dexMod + 3);
+  document.getElementById('save-will').textContent = formatSigned(16 + wisMod + 3);
+}
+
+// 6. Hit Points System
+function renderHP() {
+  document.getElementById('hp-current').textContent = state.hp.current;
+  const pct = Math.max(0, Math.min(100, Math.round((state.hp.current / state.hp.max) * 100)));
+  const bar = document.getElementById('hp-bar');
+  bar.style.width = pct + '%';
+  bar.style.backgroundColor = pct > 50 ? 'var(--green)' : pct > 20 ? 'var(--gold)' : 'var(--accent)';
+
+  document.getElementById('hp-log-count').textContent = state.hp.log.length;
+  const list = document.getElementById('hp-log-list');
+  list.innerHTML = state.hp.log.map(item => `
+    <div class="hp-log-entry">
+      <span class="${item.type === 'damage' ? 'log-dmg' : 'log-heal'}">${item.type === 'damage' ? '💥 -' + item.val + ' de Dano' : '💚 +' + item.val + ' de Cura'}</span>
+      <span style="color: var(--muted);">${item.time} (PV: ${item.current})</span>
+    </div>
+  `).join('');
+}
+
+function alterHP(type) {
+  const input = document.getElementById('hp-change-val');
+  const val = parseInt(input.value, 10);
+  if (!val || val <= 0) return;
+
+  if (type === 'damage') {
+    state.hp.current = Math.max(0, state.hp.current - val);
+  } else {
+    state.hp.current = Math.min(state.hp.max, state.hp.current + val);
+  }
+
+  state.hp.log.unshift({
+    type,
+    val,
+    current: state.hp.current,
+    time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+  });
+
+  input.value = '';
+  saveState();
+  renderHP();
+}
+
+// 7. Buffs & Attack Calculation
+function toggleBuff(buffKey) {
+  state.buffs[buffKey] = !state.buffs[buffKey];
+  saveState();
+  renderBuffsAndAttacks();
+}
+
+function renderBuffsAndAttacks() {
+  for (const [key, active] of Object.entries(state.buffs)) {
+    const el = document.getElementById('buff-' + key);
+    if (el) {
+      el.classList.toggle('active', active);
+    }
+  }
+
+  const isMantis = state.buffs.mantis;
+  const dmgLabel = isMantis ? 'DOBRADO (Salto do Louva-a-Deus ativo!)' : '';
+
+  document.getElementById('dmg-display-1').innerHTML = `4d8 + 45 ${isMantis ? '<span class="tag tag-accent">x2 DANO NO SALTO</span>' : ''}`;
+  document.getElementById('dmg-display-2').innerHTML = `4d8 + 41 ${isMantis ? '<span class="tag tag-accent">x2 DANO NO SALTO</span>' : ''}`;
+  document.getElementById('dmg-display-3').innerHTML = `4d8 + 9 ${isMantis ? '<span class="tag tag-accent">x2 DANO NO SALTO</span>' : ''}`;
+}
+
+// 8. Skills Table Rendering
+function renderSkills(filterText = '') {
+  const tbody = document.getElementById('skills-table-body');
+  tbody.innerHTML = '';
+  const search = filterText.toLowerCase().trim();
+
+  state.skills.forEach((skill, idx) => {
+    if (search && !skill.name.toLowerCase().includes(search)) return;
+
+    const abMod = calcMod(state.abilities[skill.ability]);
+    const total = abMod + (skill.ranks || 0) + (skill.misc || 0);
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><strong>${skill.name}</strong></td>
+      <td><span class="tag">${skill.ability.toUpperCase()}</span></td>
+      <td class="skill-total">${formatSigned(total)}</td>
+      <td style="color: var(--muted); font-weight:600;">${formatSigned(abMod)}</td>
+      <td>
+        <div class="skill-ranks-cell">
+          <button class="btn-step" onclick="adjustSkillRank(${idx}, -1)">-</button>
+          <input type="number" class="skill-ranks-input" value="${skill.ranks || 0}" onchange="setSkillRank(${idx}, this.value)">
+          <button class="btn-step" onclick="adjustSkillRank(${idx}, 1)">+</button>
+        </div>
+      </td>
+      <td style="color: var(--muted); font-weight:600;">${skill.misc || 0}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function adjustSkillRank(idx, delta) {
+  state.skills[idx].ranks = Math.max(0, (state.skills[idx].ranks || 0) + delta);
+  saveState();
+  renderSkills(document.getElementById('skills-search').value);
+}
+
+function setSkillRank(idx, val) {
+  state.skills[idx].ranks = Math.max(0, parseInt(val, 10) || 0);
+  saveState();
+  renderSkills(document.getElementById('skills-search').value);
+}
+
+function filterSkills(text) {
+  renderSkills(text);
+}
+
+// 9. Feats & Accordion Rendering
+function renderFeats() {
+  const container = document.getElementById('accordions-container');
+  container.innerHTML = '';
+
+  featsDatabase.forEach((cat, cIdx) => {
+    const group = document.createElement('div');
+    group.className = 'accordion-group';
+    group.innerHTML = `
+      <div class="accordion-header" onclick="toggleAccordion('cat-${cIdx}')">
+        <span>${cat.icon} ${cat.category} (${cat.items.length})</span>
+        <span id="cat-${cIdx}-arrow">▼</span>
+      </div>
+      <div class="accordion-content" id="cat-${cIdx}">
+        ${cat.items.map((item, iIdx) => `
+          <div class="feat-card" onclick="openModal('${cIdx}', '${iIdx}')">
+            <div>
+              <div class="feat-name">${item.name}</div>
+              <div class="feat-sub">${item.tag}</div>
+            </div>
+            <div style="font-size: 0.75rem; color: var(--accent); font-weight: 700; margin-top: 6px;">Ver detalhes ➔</div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    container.appendChild(group);
+  });
+}
+
+function toggleAccordion(id) {
+  const el = document.getElementById(id);
+  const arrow = document.getElementById(id + '-arrow');
+  if (el.style.display === 'none') {
+    el.style.display = 'grid';
+    arrow.textContent = '▼';
+  } else {
+    el.style.display = 'none';
+    arrow.textContent = '▶';
+  }
+}
+
+// 10. Modal Logic
+function openModal(cIdx, iIdx) {
+  const item = featsDatabase[cIdx].items[iIdx];
+  document.getElementById('modal-title').textContent = item.name;
+  document.getElementById('modal-tag').textContent = `${item.tag} • Fonte: ${item.source}`;
+  document.getElementById('modal-desc').textContent = item.desc;
+  document.getElementById('detail-modal').classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('detail-modal').classList.remove('active');
+}
+
+function closeModalOnBackdrop(e) {
+  if (e.target.id === 'detail-modal') closeModal();
+}
+
+// 11. Dice Rolling Simulator
+function rollAttack(name, atkBonus, diceCount, diceSides, dmgBonus) {
+  const d20 = Math.floor(Math.random() * 20) + 1;
+  const atkTotal = d20 + atkBonus;
+  const isCrit = d20 === 20;
+
+  let rolls = [];
+  for (let i = 0; i < diceCount; i++) {
+    rolls.push(Math.floor(Math.random() * diceSides) + 1);
+  }
+  let diceSum = rolls.reduce((a, b) => a + b, 0);
+  
+  let finalDmg = diceSum + dmgBonus;
+  if (state.buffs.mantis) finalDmg *= 2;
+
+  const msg = `
+🎲 ${name}:
+• Ataque: d20 (${d20}) + ${atkBonus} = ${atkTotal} ${isCrit ? '🔥 AMEACA DECISIVA (20 NATURAL)!' : ''}
+• Dano: [${rolls.join(', ')}] + ${dmgBonus} = ${finalDmg} ${state.buffs.mantis ? '(x2 Mantis Leap)' : ''}
+  `;
+  alert(msg.trim());
+}
+
+function quickRoll(sides) {
+  const r = Math.floor(Math.random() * sides) + 1;
+  document.getElementById('quick-dice-result').innerHTML = `d${sides} ➔ <span style="font-size: 1.4rem; color: var(--accent);">${r}</span>`;
+}
+
+// 12. Tab Switching & Theme
+function switchTab(tabId) {
+  document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('main').forEach(m => m.style.display = 'none');
+
+  if (tabId === 'overview') {
+    document.querySelectorAll('.tab-btn')[0].classList.add('active');
+    document.getElementById('tab-overview').style.display = 'block';
+  } else if (tabId === 'skills') {
+    document.querySelectorAll('.tab-btn')[1].classList.add('active');
+    document.getElementById('tab-skills').style.display = 'block';
+  } else if (tabId === 'feats') {
+    document.querySelectorAll('.tab-btn')[2].classList.add('active');
+    document.getElementById('tab-feats').style.display = 'block';
+  }
+}
+
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('DND35_THEME', next);
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast-msg');
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 2500);
+}
+
+function updateIdentity(field, val) {
+  state[field] = val;
+  saveState();
+}
+
+// Render All Initial
+function renderAll() {
+  renderAbilities();
+  renderDefenses();
+  renderHP();
+  renderBuffsAndAttacks();
+  renderSkills();
+  renderFeats();
+}
+
+// Bootstrap
+const savedTheme = localStorage.getItem('DND35_THEME') || 'dark';
+document.documentElement.setAttribute('data-theme', savedTheme);
+renderAll();
+</script>
+</body>
+</html>
